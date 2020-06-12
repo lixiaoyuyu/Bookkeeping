@@ -1,0 +1,88 @@
+<!--  -->
+<template>
+      <div>
+        <div class="container">
+             <div class="item item1">
+                 <span>备注:</span>
+                 <input type="text" placeholder="点击填写备注...">
+             </div>
+             <div class="item item2">0.00</div>
+             <div class="item" v-for="(current,index) in list" :key="index">{{current}}</div>
+             <div class="item iconfont icon-shanchu"></div>
+             <div class="item  active">完成</div>
+             <!-- <div class="item">7</div>
+             <div class="item">8</div>
+             <div class="item">9</div>
+             <div class="item">清除</div>
+             <div class="item">4</div>
+             <div class="item">5</div>
+             <div class="item">6</div>
+             <div class="item">+</div>
+             <div class="item">1</div>
+             <div class="item">2</div>
+             <div class="item">3</div>
+             <div class="item">-</div>
+             <div class="item">.</div>
+             <div class="item">0</div>
+             <div class="item "></div>
+             <div class="item  active">完成</div> -->
+
+        </div>
+      </div>
+</template>
+
+<script>
+export default {
+  data () {
+    return {
+      list: [7, 8, 9, 'AC', 4, 5, 6, '+', 1, 2, 3, '-', '.', 0]
+    }
+  },
+
+  methods: {}
+}
+
+</script>
+<style lang='less' scoped>
+.container {
+    width: 96%;
+    height: 200px;
+    display: grid;
+    grid-template-columns: repeat(4,25%);
+    grid-template-rows: repeat(5,20%);
+     background-color: #FFCCCC;
+     .item1 {
+        grid-column-start: 1;
+        grid-column-end: 3;
+        justify-self:start;
+        input {
+            margin-left: 10px;
+            border: none;
+            outline: none;
+            width: 80px;
+            line-height: 1.5em;
+            background-color: transparent;
+        }
+        span {
+             margin-left: 5px;
+            font-size: 16px;
+        }
+     }
+     div.item2 {
+        grid-column-start:3;
+        grid-column-end: 5;
+        justify-self:end;
+        padding-right: 10px;
+        font-size: 25px;
+     }
+     .item {
+         text-align: center;
+         font-size: 20px;
+         line-height: 2em;
+         cursor: pointer;
+     }
+     .active {
+         background-color: yellow;
+     }
+}
+</style>

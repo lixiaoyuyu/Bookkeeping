@@ -9,6 +9,16 @@
 export default {
   data () {
     return {
+      iconList: [
+        { type: 'icon-shucai', value: '餐饮' },
+        { type: 'icon-shucai', value: '餐饮' },
+        { type: 'icon-shucai', value: '餐饮' },
+        { type: 'icon-shucai', value: '餐饮' },
+        { type: 'icon-shucai', value: '餐饮' },
+        { type: 'icon-shucai', value: '餐饮' },
+        { type: 'icon-shucai', value: '餐饮' },
+        { type: 'icon-shucai', value: '餐饮' }
+      ]
     }
   },
 

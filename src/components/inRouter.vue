@@ -1,11 +1,11 @@
 <!--  -->
 <template>
-  <div>
+  <div id="inRouter">
       <header>
           <router-link to="/income">支出</router-link>
           <router-link to="/expenditure">收入</router-link>
       </header>
-       <router-view></router-view>
+      <router-view></router-view>
   </div>
 </template>
 
@@ -21,6 +21,10 @@ export default {
 
 </script>
 <style lang='less' scoped>
+#inRouter {
+  width: 100vw;
+  height: 100vh;
+}
 header {
  height: 50px;
  background-color: blue;
