@@ -16,6 +16,10 @@ const routes = [
     component: inRouter,
     children: [
       {
+        path: '/',
+        redirect: '/income'
+      },
+      {
         path: '/income',
         component: income
       },

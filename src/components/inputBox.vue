@@ -6,10 +6,12 @@
                  <span>备注:</span>
                  <input type="text" placeholder="点击填写备注...">
              </div>
-             <div class="item item2">0.00</div>
-             <div class="item" v-for="(current,index) in list" :key="index">{{current}}</div>
-             <div class="item iconfont icon-shanchu"></div>
-             <div class="item  active">完成</div>
+             <div class="item item2">{{ $store.state.result}}</div>
+             <div class="item" v-for="(current,index) in list" :key="index"
+             @click="getResult">{{current}}</div>
+             <div class="item iconfont icon-shanchu" @click="clearRes"></div>
+             <div class="item  active" v-if="!$store.state.result">完成</div>
+             <div class="item  active" @click="sum" v-else>=</div>
              <!-- <div class="item">7</div>
              <div class="item">8</div>
              <div class="item">9</div>
@@ -39,7 +41,17 @@ export default {
     }
   },
 
-  methods: {}
+  methods: {
+    getResult (e) {
+      this.$store.commit('getS', e.target.innerHTML)
+    },
+    clearRes () {
+      this.$store.commit('clearR')
+    },
+    sum () {
+      this.$store.commit('sum')
+    }
+  }
 }
 
 </script>

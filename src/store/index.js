@@ -5,8 +5,68 @@ Vue.use(Vuex)
 
 export default new Vuex.Store({
   state: {
+    result: '0',
+    beiZhu: '',
+    transport: ['+', '-', '*'],
+    isPoint: false,
+    isJjCc: false,
+    isStart: false,
+    isHasJj: false
   },
   mutations: {
+    getS (state, n) {
+      const index = state.transport.indexOf(n) > -1
+      // 判断一开始是否是.
+      if (state.result === '0' && !index) {
+        if (n === '.') {
+          state.result += '' + n
+          state.isPoint = true
+        } else {
+          state.result = '' + n
+        }
+        state.isStart = true
+        return
+      }
+      // 输入的是数字
+      if (!index) {
+        if (n === '.' && state.isPoint) {
+          return
+        }
+        if (n === '.' && state.isJjCc) {
+          state.isPoint = true
+          state.isJjCc = true
+        } else {
+          state.isJjCc = false
+        }
+        if (state.isHasJj && n === '.') {
+          state.result += ''
+        } else {
+          state.result += '' + n
+          state.isHasJj = false
+          state.isPoint = false
+        }
+      }
+      if (index && !state.isJjCc) {
+        state.result += '' + n
+        state.isPoint = false
+        state.isJjCc = true
+        state.isHasJj = true
+      }
+    },
+    clearR (state) {
+      state.result = '0'
+      state.isPoint = false
+      state.isJjCc = false
+      state.isStart = false
+      state.isHasJj = false
+    },
+    sum (state) {
+      function s (n) {
+        const fn = Function
+        return fn('return ' + n)()
+      }
+      console.log(s(state.result))
+    }
   },
   actions: {
   },
