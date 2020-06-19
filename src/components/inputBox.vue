@@ -4,31 +4,14 @@
         <div class="container">
              <div class="item item1">
                  <span>备注:</span>
-                 <input type="text" placeholder="点击填写备注...">
+                 <input type="text" placeholder="点击填写备注..." v-model="$store.state.beiZhu">
              </div>
              <div class="item item2">{{ $store.state.result}}</div>
              <div class="item" v-for="(current,index) in list" :key="index"
-             @click="getResult">{{current}}</div>
+             @click="getResult" >{{current}}</div>
              <div class="item iconfont icon-shanchu" @click="clearRes"></div>
-             <div class="item  active" v-if="!$store.state.result">完成</div>
+             <div class="item  active" v-if="$store.state.isFinish" @click="finish('1')">完成</div>
              <div class="item  active" @click="sum" v-else>=</div>
-             <!-- <div class="item">7</div>
-             <div class="item">8</div>
-             <div class="item">9</div>
-             <div class="item">清除</div>
-             <div class="item">4</div>
-             <div class="item">5</div>
-             <div class="item">6</div>
-             <div class="item">+</div>
-             <div class="item">1</div>
-             <div class="item">2</div>
-             <div class="item">3</div>
-             <div class="item">-</div>
-             <div class="item">.</div>
-             <div class="item">0</div>
-             <div class="item "></div>
-             <div class="item  active">完成</div> -->
-
         </div>
       </div>
 </template>
@@ -50,6 +33,10 @@ export default {
     },
     sum () {
       this.$store.commit('sum')
+    },
+    finish (n) {
+      this.$store.commit('finished', n)
+      this.$router.push('/')
     }
   }
 }

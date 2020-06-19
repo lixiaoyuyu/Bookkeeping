@@ -1,24 +1,29 @@
 <template>
   <div id="Index">
     <header>
-      <h3>小宇记账</h3>
+       <h3>小宇记账</h3>
        <div class="felxbox">
          <div class="data item"><p>2019年</p><span>08月</span></div>
          <div class="income item"><p>收入</p><span>0.00</span></div>
          <div class="expenditure item"><p>支出</p><span>0.00</span></div>
-      </div>
+        </div>
        </header>
+       <mains></mains>
     <footer>
     <a href="#" @click.prevent="inRouter"><span>+</span></a>
     </footer>
   </div>
 </template>
 <script>
+import mains from './list'
 export default {
   methods: {
     inRouter () {
       this.$router.push('/inRouter')
     }
+  },
+  components: {
+    mains
   }
 }
 </script>
@@ -34,8 +39,10 @@ export default {
 #Index {
   box-sizing: border-box;
   header {
+    // position: fixed;
     width: 100%;
     height: 130px;
+    // top: 0;
      padding:  5px 5px 0 5px;
     box-sizing: border-box;
     background-color: #CCFFFF;

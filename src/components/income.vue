@@ -3,16 +3,6 @@
   <div>
     <div id="income">
      <icon :iconList="iconList"></icon>
-      <!-- <div class="container">
-        <div class="item">1</div>
-        <div class="item">20.</div>
-        <div class="item">3</div>
-        <div class="item">4</div>
-        <div class="item">5</div>
-        <div class="item">6</div>
-        <div class="item">7</div>
-        <div class="item">8</div>
-      </div> -->
     </div>
   </div>
 </template>

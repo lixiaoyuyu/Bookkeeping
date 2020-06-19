@@ -3,7 +3,7 @@
     <div>
       <div class="container" v-if="List">
             <div class="item " v-for="(current,index) in List"  :key="index">
-                <span @click.stop="active" class="iconfont" :class="current.type" ></span>
+                <span @click.stop="active(index, $event)" class="iconfont" :class="current.type" ></span>
                  <p class="cm">{{current.value}}</p>
             </div>
       </div>
@@ -29,10 +29,12 @@ export default {
     }
   },
   methods: {
-    active (e) {
+    active (index, e) {
       if (this.activeList && this.eTarget) {
         this.eTarget.classList.remove('active')
       }
+      this.$store.state.index = index
+      console.log(this.$store.state.index)
       e.target.classList.add('active')
       this.isShow = true
       this.activeList = e.target.classList
