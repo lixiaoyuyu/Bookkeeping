@@ -10,7 +10,7 @@
              <div class="item" v-for="(current,index) in list" :key="index"
              @click="getResult" >{{current}}</div>
              <div class="item iconfont icon-shanchu" @click="clearRes"></div>
-             <div class="item  active" v-if="$store.state.isFinish" @click="finish('1')">完成</div>
+             <div class="item  active" v-if="$store.state.isFinish" @click="finish($store.state.isIncomes)">完成</div>
              <div class="item  active" @click="sum" v-else>=</div>
         </div>
       </div>
@@ -20,7 +20,7 @@
 export default {
   data () {
     return {
-      list: [7, 8, 9, 'AC', 4, 5, 6, '+', 1, 2, 3, '-', '.', 0]
+      list: [7, 8, 9, '*', 4, 5, 6, '+', 1, 2, 3, '-', '.', 0]
     }
   },
 
@@ -49,7 +49,7 @@ export default {
     display: grid;
     grid-template-columns: repeat(4,25%);
     grid-template-rows: repeat(5,20%);
-     background-color: #FFCCCC;
+     background-color: #99CCFF;
      .item1 {
         grid-column-start: 1;
         grid-column-end: 3;
@@ -65,6 +65,7 @@ export default {
         span {
              margin-left: 5px;
             font-size: 16px;
+            font-weight: 600;
         }
      }
      div.item2 {
@@ -81,7 +82,7 @@ export default {
          cursor: pointer;
      }
      .active {
-         background-color: yellow;
+         background-color: #003366;
      }
 }
 </style>

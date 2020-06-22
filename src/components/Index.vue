@@ -3,9 +3,9 @@
     <header>
        <h3>小宇记账</h3>
        <div class="felxbox">
-         <div class="data item"><p>2019年</p><span>08月</span></div>
-         <div class="income item"><p>收入</p><span>0.00</span></div>
-         <div class="expenditure item"><p>支出</p><span>0.00</span></div>
+         <div class="data item"><p>{{today | years }}年</p><span>{{today | months}}月</span></div>
+         <div class="income item"><p>收入</p><span>{{$store.getters.expenditures}}</span></div>
+         <div class="expenditure item"><p>支出</p><span>{{$store.getters.incomes}}</span></div>
         </div>
        </header>
        <mains></mains>
@@ -17,6 +17,19 @@
 <script>
 import mains from './list'
 export default {
+  data: function () {
+    return {
+      today: new Date()
+    }
+  },
+  filters: {
+    years: function (val) {
+      return val.getFullYear()
+    },
+    months: function (val) {
+      return (val.getMonth() + 1).toString().padStart(2, '0')
+    }
+  },
   methods: {
     inRouter () {
       this.$router.push('/inRouter')
@@ -39,13 +52,13 @@ export default {
 #Index {
   box-sizing: border-box;
   header {
-    // position: fixed;
     width: 100%;
     height: 130px;
-    // top: 0;
+    position: sticky;
+    top: 0;
      padding:  5px 5px 0 5px;
     box-sizing: border-box;
-    background-color: #CCFFFF;
+    background-color: #666699;
      h3 {
        height: 60px;
        line-height: 40px;
@@ -61,6 +74,10 @@ export default {
           line-height: 30px;
           color: #ccc;
         }
+         span {
+            font-size: 18px;
+            font-weight: 600;
+          }
       }
     }
   }
@@ -70,22 +87,25 @@ export default {
     height: 50px;
     bottom: 0;
     z-index: 2;
+    background-color: #fff;
+    overflow: hidden;
      a {
        text-decoration: none;
        display: block;
        margin: 0 auto;
        width: 50px;
        height: 50px;
-       cursor: pointer;
        span {
             display: block;
             width: 100%;
-            color: black;
-            font-size: 50px;
+            color: #666699;
+            font-size: 60px;
             font-weight: 700;
             line-height: 50px;
             text-align: center;
-            transform: translateY(-10px);
+            text-shadow: 5px 4px 7px;
+            transform: translateY(-11px);
+            cursor: pointer;
        }
      }
   }

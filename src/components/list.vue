@@ -1,12 +1,12 @@
-<!--  -->
+<!-- 列表 -->
 <template>
 <div>
-     <div class="main" v-if="$store.state.arr">
+     <div class="main" v-if="list">
        <ul>
-           <li v-for="(current, index) in $store.state.arr" :key='index'>
+           <li v-for="(current, index) in list" :key='index' @click="see(index)">
                <span > <span class="iconfont" :class="current.icon.type"> </span> </span>
                <span class="val">{{current.icon.value}}</span>
-               <span class="money">{{current.isIncome ? current.val : '-'+current.val }}</span>
+               <span class="money">{{current.isIncome ? '-'+current.val : current.val }}</span>
            </li>
         </ul>
      </div>
@@ -20,10 +20,15 @@
 export default {
   data () {
     return {
+      list: this.$store.state.arr
     }
   },
 
-  methods: {}
+  methods: {
+    see (index) {
+      this.$router.push({ path: `/Details/${index}` })
+    }
+  }
 }
 
 </script>
@@ -48,8 +53,6 @@ export default {
           }
           span.iconfont {
               font-size: 30px;
-            //   background-color: red;
-            //   color: red;
               padding: 5px;
               background-color: yellow;
           }
@@ -62,8 +65,8 @@ export default {
               padding-right: 15px;
               font-weight: 600;
           }
-          &:hover {
-            background-color: #ccc;
+          &.active {
+            background-color:#666699;
           }
       }
       >:last-child {

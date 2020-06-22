@@ -14,8 +14,9 @@ export default new Vuex.Store({
     isHasJj: false,
     isFinish: true,
     index: -1,
+    isIncomes: '',
     arr: [],
-    iconList: [{ type: 'icon-icon-', value: '餐饮' },
+    incomeList: [{ type: 'icon-icon-', value: '餐饮' },
       { type: 'icon-gouwu', value: '购物' },
       { type: 'icon-riyongpin', value: '日用' },
       { type: 'icon-jiaotong', value: '交通' },
@@ -23,12 +24,19 @@ export default new Vuex.Store({
       { type: 'icon-shucai', value: '蔬菜' },
       { type: 'icon-lingshi', value: '零食' },
       { type: 'icon-yundong', value: '运动' },
-      { type: 'icon-yule', value: '娱乐' }
+      { type: 'icon-yule', value: '娱乐' },
+      { type: 'icon-qita', value: '其他' }
+    ],
+    expenditureList: [
+      { type: 'icon-gongzi', value: '工资' },
+      { type: 'icon-jianzhi', value: '兼职' },
+      { type: 'icon-licai', value: '理财' },
+      { type: 'icon-lijin', value: '礼金' },
+      { type: 'icon-qita', value: '其他' }
     ]
   },
   mutations: {
     getS (state, n) {
-      state.isFinish = false
       const index = state.transport.indexOf(n) > -1
       // 判断一开始是否是.
       if (state.result === '0' && !index) {
@@ -65,6 +73,7 @@ export default new Vuex.Store({
         state.isPoint = false
         state.isJjCc = true
         state.isHasJj = true
+        state.isFinish = false
       }
     },
     clearR (state) {
@@ -76,6 +85,15 @@ export default new Vuex.Store({
       state.isFinish = true
     },
     sum (state) {
+      // 判断最后一位是否为运算符
+      if (state.result.length > 1) {
+        const index = state.transport.indexOf(state.result[state.result.length - 1]) > -1
+        if (index) {
+          const temp = [...state.result]
+          temp.pop()
+          state.result = temp.join()
+        }
+      }
       function s (n) {
         const fn = Function
         return fn('return ' + n)()
@@ -86,23 +104,50 @@ export default new Vuex.Store({
     finished (state, n) {
       if (n === '1') {
         state.arr.push({
-          icon: state.iconList[state.index],
-          bZ: state.beiZhu = '',
+          icon: state.incomeList[state.index],
+          bZ: state.beiZhu,
           val: state.result,
-          isIncome: true
+          isIncome: true,
+          date: new Date()
         })
       } else {
         state.arr.push({
-          icon: state.iconList[state.index],
+          icon: state.expenditureList[state.index],
           bZ: state.beiZhu = '',
           val: state.result,
-          isIncome: false
+          isIncome: false,
+          date: new Date()
         })
       }
       state.result = '0'
+      state.beiZhu = ''
+      state.isIncomes = ''
+    },
+    shanChu (state, n) {
+      state.arr.splice(n, 1)
     }
   },
   actions: {
+  },
+  getters: {
+    incomes (state) {
+      let sum = 0.00
+      state.arr.forEach(item => {
+        if (item.isIncome) {
+          sum += parseFloat(item.val)
+        }
+      })
+      return sum.toFixed(2)
+    },
+    expenditures (state) {
+      let sum = 0.00
+      state.arr.forEach(item => {
+        if (!item.isIncome) {
+          sum += parseFloat(item.val)
+        }
+      })
+      return sum.toFixed(2)
+    }
   },
   modules: {
   }

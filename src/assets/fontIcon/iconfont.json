@@ -83,6 +83,13 @@
       "unicode_decimal": 58898
     },
     {
+      "icon_id": "5343670",
+      "name": "取消",
+      "font_class": "tuanduicankaoxian-",
+      "unicode": "e63b",
+      "unicode_decimal": 58939
+    },
+    {
       "icon_id": "6965084",
       "name": "交通",
       "font_class": "jiaotong",
@@ -90,11 +97,11 @@
       "unicode_decimal": 58897
     },
     {
-      "icon_id": "7434461",
-      "name": "删除",
-      "font_class": "shanchu",
-      "unicode": "e621",
-      "unicode_decimal": 58913
+      "icon_id": "7434419",
+      "name": "乘号",
+      "font_class": "chenghao",
+      "unicode": "e619",
+      "unicode_decimal": 58905
     },
     {
       "icon_id": "8132646",
@@ -109,6 +116,13 @@
       "font_class": "licai",
       "unicode": "e614",
       "unicode_decimal": 58900
+    },
+    {
+      "icon_id": "13075013",
+      "name": "删除",
+      "font_class": "shanchu",
+      "unicode": "e626",
+      "unicode_decimal": 58918
     }
   ]
 }

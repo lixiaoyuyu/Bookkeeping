@@ -1,30 +1,28 @@
 <!--  -->
 <template>
   <div>
-      11111111
+     <div id="expenditure">
+     <icon :iconList="iconList" income= '2'></icon>
+    </div>
   </div>
 </template>
 
 <script>
+import icon from './icon'
 export default {
   data () {
     return {
-      iconList: [
-        { type: 'icon-shucai', value: '餐饮' },
-        { type: 'icon-shucai', value: '餐饮' },
-        { type: 'icon-shucai', value: '餐饮' },
-        { type: 'icon-shucai', value: '餐饮' },
-        { type: 'icon-shucai', value: '餐饮' },
-        { type: 'icon-shucai', value: '餐饮' },
-        { type: 'icon-shucai', value: '餐饮' },
-        { type: 'icon-shucai', value: '餐饮' }
-      ]
+      iconList: this.$store.state.expenditureList
     }
   },
-
-  methods: {}
+  components: {
+    icon
+  }
 }
 
 </script>
 <style lang='less' scoped>
+#expenditure {
+  margin: 10px 5px 0 5px ;
+}
 </style>

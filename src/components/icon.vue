@@ -19,7 +19,7 @@
 <script>
 import inputBox from './inputBox'
 export default {
-  props: ['iconList'],
+  props: ['iconList', 'income'],
   data () {
     return {
       List: this.iconList,
@@ -34,6 +34,7 @@ export default {
         this.eTarget.classList.remove('active')
       }
       this.$store.state.index = index
+      this.$store.state.isIncomes = this.income
       console.log(this.$store.state.index)
       e.target.classList.add('active')
       this.isShow = true
